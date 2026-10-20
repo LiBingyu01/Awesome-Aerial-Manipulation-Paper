@@ -2,7 +2,7 @@
 
 > A curated collection of **aerial manipulation research** — from flying arms, agile grasping, and contact-rich control to vision-language-action learning, embodied agents, and multi-UAV cooperation.
 
-**Language:** English · [简体中文](awesome-aerial-manipulation-table.zh-CN.md)  
+**Language:** English · [简体中文](awesome-aerial-manipulation.zh-CN.md)  
 **Full awesome list:** [Awesome Aerial Manipulation](awesome-aerial-manipulation.md)
 
 **58 papers & perspectives · 5 research themes · 3 takeaways per paper**  

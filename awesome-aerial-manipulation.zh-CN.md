@@ -3,7 +3,6 @@
 > 一份持续整理的 **空中机械臂与空中操作（Aerial Manipulation）** 论文精选清单：从飞行机械臂、灵巧抓取与接触控制，到 VLA、具身学习与多机协同。
 
 **语言 / Language：** 简体中文 · [English](awesome-aerial-manipulation-table.md)  
-**完整清单：** [Awesome Aerial Manipulation 中文版](awesome-aerial-manipulation.zh-CN.md)
 
 **58 篇论文与观点文章 · 5 个研究方向 · 每篇 3 点技术速览**  
 最后更新：2026-10-20。适合快速筛选研究方向、梳理 Related Work 和建立阅读清单。

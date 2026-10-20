@@ -1,229 +1,116 @@
-# Awesome Aerial Manipulation
+# Awesome Aerial Manipulation: 58 Papers at a Glance
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+> **Updated:** October 20, 2026 · **58 papers and perspectives** · Organized into five research themes.
 
-**Language:** English | [简体中文](awesome-aerial-manipulation.zh-CN.md)
+An English companion to the [Chinese comparison table](awesome-aerial-manipulation-table.zh-CN.md). Every entry includes the **paper title**, **publication venue or preprint status**, and **three concise research contributions** to support literature screening and Related Work drafting.
 
-> **A curated collection of papers, benchmarks, open-source projects, and research resources for aerial manipulation.** From flying robotic arms and agile grasping to contact-rich control, multi-robot cooperation, and vision-language-action learning.
+**Notes on interpretation**
 
-**Last updated:** October 19, 2026 · **58 research papers and perspectives** · **4 surveys and roadmaps**
-
-Aerial manipulation enables flying robots to move beyond passive sensing and interact physically with the world. This list focuses on the intersection of **aerial robotics, dexterous manipulation, embodied AI, perception, planning, and control**.
-
-The collection primarily covers research from **2024–2026**, with a few earlier foundational surveys. Each entry links to a paper or an official publication page. Some entries are closely related research on cable-suspended payloads, aerial grippers, or interaction-oriented flight rather than articulated aerial manipulators.
-
-**Legend:** `Core` = aerial manipulator, flying hand/gripper, or direct manipulation/control research; `Related` = adjacent aerial interaction, transport, or enabling technology. `arXiv` means a preprint page; it does not imply that the work has not subsequently been accepted.
+- The three points are *editorial summaries* organized around problem setting, methodology, and validation/technical value. They are not necessarily the authors' own enumerated contribution claims.
+- **arXiv is a preprint server, not an acceptance venue.** An arXiv label means no later formal publication was verified in this list; statuses may have changed.
+- The scope includes adjacent topics such as aerial grippers, cable-suspended payloads, cooperative aerial manipulation, and interactive navigation benchmarks, which should not all be conflated with articulated aerial robot arms.
+- Verify the final publisher records, authors, and bibliographic metadata before citing a paper in a submission.
 
 ## Contents
 
-- [Editor's Picks](#editors-picks)
-- [Papers](#papers)
-  - [Vision-Language-Action, Agents & Robot Learning](#vision-language-action-agents--robot-learning)
-  - [Perception, Grasping & Autonomous Interaction](#perception-grasping--autonomous-interaction)
-  - [Whole-Body Planning, Control & Contact](#whole-body-planning-control--contact)
-  - [Robot Design, Morphology & Soft Manipulation](#robot-design-morphology--soft-manipulation)
-  - [Cooperative Manipulation & Related Benchmarks](#cooperative-manipulation--related-benchmarks)
-- [Surveys & Roadmaps](#surveys--roadmaps)
-- [Projects & Code](#projects--code)
-- [Open Research Directions](#open-research-directions)
-- [Scope & Maintenance](#scope--maintenance)
+1. [Vision–Language–Action, Agents & Robot Learning](#visionlanguageaction-agents--robot-learning)
+2. [Onboard Perception, Grasping & Physical Interaction](#onboard-perception-grasping--physical-interaction)
+3. [Whole-Body Planning, Dynamics & Contact Control](#whole-body-planning-dynamics--contact-control)
+4. [Robot Embodiment, Soft Mechanisms & Platform Design](#robot-embodiment-soft-mechanisms--platform-design)
+5. [Cooperative Manipulation & Related Benchmarks](#cooperative-manipulation--related-benchmarks)
 
-## Editor's Picks
+## Vision–Language–Action, Agents & Robot Learning (10 papers)
 
-**A recommended starting point for readers interested in embodied aerial manipulation and learning-based systems.** These are editorial reading priorities, not paper rankings.
-
-| Paper | Venue / Year | Why read it? |
+| Paper Title | Publication Venue / Status | Three Core Contributions |
 |---|---|---|
-| [**Flying Hand**](https://roboticsproceedings.org/rss21/p130.html) | RSS 2025 | A versatile end-effector-centric framework for teleoperation and imitation learning. |
-| [**π, But Make It Fly / AirVLA**](https://arxiv.org/abs/2603.25038) | arXiv 2026 | Transfers pretrained manipulation VLA policies to the dynamics of aerial robots. |
-| [**AeroManip-VLA**](https://arxiv.org/abs/2609.36915) | arXiv 2026 | Scalable RL-generated demonstrations and evaluation for aerial VLA. |
-| [**AIR-VLA**](https://proceedings.mlr.press/v306/sun26an.html) | ICML 2026 | Aerial VLA tasks, demonstrations, and systematic model evaluation. |
-| [**AM-Bench**](https://arxiv.org/abs/2609.00641) | arXiv 2026 | A modular benchmark for manipulation policies, embodiments, and low-level controllers. |
-| [**Fly-by-Code**](https://arxiv.org/abs/2610.12549) | arXiv 2026 | Embodied coding agents with active visual and physical feedback. |
-| [**Aerial Manipulation in the Wild**](https://arxiv.org/abs/2609.30521) | arXiv 2026 | Onboard localization, imitation learning, and whole-body control outdoors. |
-| [**AERMANI-PLACE**](https://arxiv.org/abs/2606.14531) | arXiv 2026 | Language-grounded object placement with aerial manipulators. |
-| [**AERMANI-VLM**](https://arxiv.org/abs/2511.01472) | arXiv 2025 | Structured VLM reasoning over safe aerial manipulation skills. |
-| [**Whole-Body Integrated Motion Planning**](https://arxiv.org/abs/2501.06493) | IEEE T-RO 2025 | Joint vehicle–arm trajectory optimization under dynamic and collision constraints. |
-| [**QuadHand**](https://arxiv.org/abs/2609.35094) | IROS 2026 | Compact 3-DoF aerial arm and robot-centric collision-aware planning. |
-| [**FlyingToolbox**](https://www.nature.com/articles/s41586-025-09575-x) | Nature 2025 | Proximal cooperation and midair tool exchange between heterogeneous drones. |
+| [Fly-by-Code: Embodied Coding Agents for Aerial Manipulation with Active Visual and Physical Feedback](https://arxiv.org/abs/2610.12549) | arXiv preprint, 2026-10 | 1. Frames long-horizon aerial manipulation instructions as executable programs<br>2. Uses active View/Probe feedback to diagnose unseen outcomes and failures<br>3. Iteratively repairs programs in simulation and explores transfer to physical aerial manipulators |
+| [AeroManip-VLA: Scalable Vision-Language-Action Learning for Aerial Manipulation with RL-Generated Demonstrations](https://arxiv.org/abs/2609.36915) | arXiv preprint, 2026-09 | 1. Addresses the difficulty of collecting aerial VLA training demonstrations at scale<br>2. Combines parallel simulation, RL expert policies, and task rules to synthesize demonstrations<br>3. Provides event annotations, trajectory categories, and imitation-learning/VLA baselines |
+| [AM-Bench: A Modular Simulation Suite and Benchmark for Aerial Manipulation Policy Learning](https://arxiv.org/abs/2609.00641) | arXiv preprint, 2026-09 | 1. Supports underactuated, fully actuated, and overactuated aerial manipulators<br>2. Provides 12 task families involving contact, transport, and constrained interaction<br>3. Studies effects of embodiment, controller interfaces, disturbances, and policy design |
+| [Aerial Manipulation in the Wild with Onboard Perception, Policy Learning, and Whole-Body Control](https://arxiv.org/abs/2609.30521) | arXiv preprint, 2026-09；IROS 2026 workshop 版本 | 1. Moves aerial manipulation beyond motion-capture laboratories into outdoor environments<br>2. Combines onboard LiDAR–inertial localization with demonstration-trained diffusion policies<br>3. Uses whole-body MPC to execute end-effector-level actions on a physical platform |
+| [AERMANI-PLACE: Language Guided Object Placement with Aerial Manipulators](https://arxiv.org/abs/2606.14531) | arXiv preprint, 2026-06 | 1. Turns language-specified placement intentions into executable spatial goals<br>2. Uses image editing to depict target placements and depth to recover metric coordinates<br>3. Evaluates language-guided placement and demonstrates real aerial manipulation |
+| [$\pi$, But Make It Fly: Physics-Guided Transfer of VLA Models to Aerial Manipulation](https://arxiv.org/abs/2603.25038) | arXiv preprint, 2026-03 | 1. Examines the embodiment gap between stationary-arm VLA pretraining and flying manipulators<br>2. Adds payload-aware physics guidance during policy sampling<br>3. Uses 3D Gaussian Splatting for synthetic aerial observations and tests compound tasks |
+| [AIR-VLA: Vision-Language-Action Systems for Aerial Manipulation](https://proceedings.mlr.press/v306/sun26an.html) | ICML 2026 | 1. Defines aerial-specific tasks for vision–language–action evaluation<br>2. Collects multimodal teleoperation demonstrations with spatial and long-horizon instructions<br>3. Evaluates VLA/VLM capabilities and failure modes in aerial manipulation |
+| [Autonomous Aerial Manipulation via Contextual Contrastive Meta Reinforcement Learning](https://arxiv.org/abs/2606.08533) | arXiv preprint, 2026-06 | 1. Addresses autonomous hook-based pickup, transport, and delivery<br>2. Applies contrastive meta-RL to infer payload context from interaction history<br>3. Studies online adaptation across variable loads and sim-to-real deployment |
+| [UMI-on-Air: Embodiment-Aware Guidance for Embodiment-Agnostic Visuomotor Policies](https://arxiv.org/abs/2510.02614) | ICRA 2026（2025 预印本） | 1. Transfers embodiment-agnostic visual demonstrations to platforms with aerial dynamics<br>2. Adds gradients of low-level trajectory tracking cost during diffusion sampling<br>3. Adapts actions to platform feasibility at test time |
+| [AERMANI-VLM: Structured Prompting and Reasoning for Aerial Manipulation with Vision Language Models](https://arxiv.org/abs/2511.01472) | arXiv preprint, 2025-11 | 1. Reduces unreliable direct action generation and hallucinations from VLMs<br>2. Maps structured high-level reasoning to a library of predefined safe skills<br>3. Evaluates generalization to unseen commands and objects in multi-step pick-and-place |
 
-## Papers
+## Onboard Perception, Grasping & Physical Interaction (12 papers)
 
-Papers are organized **by research theme**, not by publication date. The short notes summarize each paper's primary contribution. Each paper appears once in the main list.
-
-### Vision-Language-Action, Agents & Robot Learning
-
-- **[Fly-by-Code: Embodied Coding Agents for Aerial Manipulation with Active Visual and Physical Feedback](https://arxiv.org/abs/2610.12549)** — *arXiv, 2026* · `Core`  
-  An embodied coding-agent framework that actively gathers visual and physical evidence to diagnose and refine manipulation programs.
-- **[AeroManip-VLA: Scalable Vision-Language-Action Learning for Aerial Manipulation with RL-Generated Demonstrations](https://arxiv.org/abs/2609.36915)** — *arXiv, 2026* · `Core`  
-  GPU-accelerated aerial manipulation environments with RL-generated demonstrations for grasping, placing, and long-horizon tasks.
-- **[AM-Bench: A Modular Simulation Suite and Benchmark for Aerial Manipulation Policy Learning](https://arxiv.org/abs/2609.00641)** — *arXiv, 2026* · `Core`  
-  A modular suite for studying the interaction between robot embodiment, disturbances, controllers, and manipulation policies.
-- **[Aerial Manipulation in the Wild with Onboard Perception, Policy Learning, and Whole-Body Control](https://arxiv.org/abs/2609.30521)** — *arXiv, 2026* · `Core`  
-  Combines onboard LiDAR–inertial localization, demonstration-based policies, and whole-body MPC for outdoor tasks.
-- **[AERMANI-PLACE: Language Guided Object Placement with Aerial Manipulators](https://arxiv.org/abs/2606.14531)** — *arXiv, 2026* · `Core`  
-  Grounds language-specified placement goals in 3D scenes and executes them using an aerial manipulator.
-- **[π, But Make It Fly: Physics-Guided Transfer of VLA Models to Aerial Manipulation](https://arxiv.org/abs/2603.25038)** — *arXiv, 2026* · `Core`  
-  Adapts manipulation-pretrained VLA models to aerial tasks using payload-aware guidance and synthetic visual data.
-- **[AIR-VLA: Vision-Language-Action Systems for Aerial Manipulation](https://proceedings.mlr.press/v306/sun26an.html)** — *ICML, 2026* · `Core`  
-  Introduces an aerial VLA benchmark with teleoperated demonstrations and evaluations of language, space, and long-horizon reasoning.
-- **[Autonomous Aerial Manipulation via Contextual Contrastive Meta Reinforcement Learning](https://arxiv.org/abs/2606.08533)** — *arXiv, 2026* · `Related`  
-  Learns payload-adaptive hook-based pickup, transport, and delivery without explicit online system identification.
-- **[UMI-on-Air: Embodiment-Aware Guidance for Embodiment-Agnostic Visuomotor Policies](https://arxiv.org/abs/2510.02614)** — *ICRA 2026; preprint 2025* · `Core`  
-  Guides diffusion-policy trajectories using embodiment-specific low-level tracking costs at inference time.
-- **[AERMANI-VLM: Structured Prompting and Reasoning for Aerial Manipulation with Vision Language Models](https://arxiv.org/abs/2511.01472)** — *arXiv, 2025* · `Core`  
-  Uses structured VLM reasoning to select interpretable, flight-safe manipulation skills.
-
-### Perception, Grasping & Autonomous Interaction
-
-- **[Learning High-Speed Aerial Grasping With a Simple Gripper](https://arxiv.org/abs/2603.05935)** — *arXiv, 2026* · `Core`  
-  Learns fast aerial grasping with a lightweight gripper and zero-shot real-world policy deployment.
-- **[An Aerial Manipulator for Perception-Driven Flower Targeting Toward Contactless Pollination in Vertical Farming](https://arxiv.org/abs/2605.06759)** — *arXiv, 2026* · `Core`  
-  Integrates RGB-D perception, MPPI, and a lightweight arm for precise flower targeting in indoor agriculture.
-- **[Aerial Manipulation with Contact-Aware Onboard Perception and Hybrid Control](https://arxiv.org/abs/2602.08251)** — *ICRA, 2026* · `Core`  
-  Uses contact-aware visual–inertial estimation, image-based visual servoing, and hybrid force–motion control.
-- **[Aerial Grasping via Maximizing Delta-Arm Workspace Utilization](https://arxiv.org/abs/2506.15539)** — *arXiv, 2025* · `Core`  
-  Optimizes aerial grasping trajectories using learned representations of a Delta arm's reachable workspace.
-- **[Reliable Aerial Manipulation: Combining Visual Tracking with Range Sensing for Robust Grasping](https://www.research-collection.ethz.ch/entities/publication/0f64ad6f-5ed2-4289-a365-6bb7c48ae182)** — *ICRA, 2025* · `Core`  
-  Fuses visual tracking and ToF range sensing to improve grasping when the target leaves the camera view.
-- **[An Open-Source Soft Robotic Platform for Autonomous Aerial Manipulation in the Wild](https://proceedings.mlr.press/v270/bauer25a.html)** — *CoRL 2024 / PMLR 2025* · `Core`  
-  An onboard-perception, soft-gripper aerial manipulation platform with open-source software and hardware.
-- **[Development of an Aerial Manipulation System Using Onboard Cameras and a Multi-Fingered Robotic Hand with Proximity Sensors](https://www.mdpi.com/1424-8220/25/2/470)** — *Sensors, 2025* · `Core`  
-  Combines onboard cameras with a proximity-sensing multi-fingered hand for object localization and grasping.
-- **[High-speed aerial grasping using a soft drone with onboard perception](https://www.nature.com/articles/s44182-024-00012-1)** — *npj Robotics, 2024* · `Core`  
-  Explores fast vision-guided aerial grasping through the compliance of a soft gripper.
-- **[Hook-Based Aerial Payload Grasping from a Moving Platform](https://arxiv.org/abs/2409.11788)** — *arXiv, 2024* · `Related`  
-  Optimizes the timing and trajectory of hook-based pickup from a moving platform.
-- **[Aerial Interaction with Tactile Sensing](https://ieeexplore.ieee.org/document/10611282/)** — *ICRA, 2024* · `Core`  
-  Brings vision-based tactile feedback to contact-rich tasks on a fully actuated UAV.
-- **[An Ultra-Light, Ultra-Fast, Passive Closing Aerial Gripping System Capable of Grasping, Perching, and Aerial Manipulation](https://ieeexplore.ieee.org/document/10770047/)** — *SSRR, 2024* · `Core`  
-  A fast, lightweight passive-closing gripper for aerial grasping and perching.
-- **[Design, Localization, Perception, and Control for GPS-Denied Autonomous Aerial Grasping and Harvesting](https://doi.org/10.1109/LRA.2024.3366015)** — *IEEE RA-L, 2024* · `Core`  
-  An integrated perception, localization, and control system for autonomous aerial fruit harvesting.
-
-### Whole-Body Planning, Control & Contact
-
-- **[Physics-infused Learning for Aerial Manipulator in Winds and Near-Wall Environments](https://arxiv.org/abs/2603.07826)** — *AIAA SciTech, 2026* · `Core`  
-  Combines aerodynamic modeling and learned residuals for robust operation near walls and in wind.
-- **[Safety-Critical Bilateral Teleoperation for Omnidirectional Aerial Manipulation Using Force-Sensorless Haptic Feedback](https://arxiv.org/abs/2608.21735)** — *IROS, 2026* · `Core`  
-  Integrates barrier-function safety filtering and sensorless haptic feedback into bilateral teleoperation.
-- **[Effector-Centric NMPC of Tiltable-Multirotors for Offset-Free Omnidirectional Aerial Manipulation](https://arxiv.org/abs/2608.17819)** — *arXiv, 2026* · `Core`  
-  Effector-centric nonlinear MPC for a tiltable platform, including omnidirectional contact tasks.
-- **[FAM-DQ: A Dual-Quadrotor-Based Fully Actuated Aerial Manipulator for High-Torque Interaction](https://arxiv.org/abs/2608.13220)** — *arXiv, 2026* · `Core`  
-  A dual-quadrotor mechanism designed for high-torque aerial physical interaction.
-- **[Hybrid Impedance-Admittance Control with Multi-Link Aerial Robot for Contact-Rich Surface Sliding Task](https://arxiv.org/abs/2608.01800)** — *arXiv, 2026* · `Core`  
-  Combines joint-level admittance and rotor-level impedance to slide compliantly along uncertain surfaces.
-- **[Global End-Effector Pose Control of an Underactuated Aerial Manipulator via Reinforcement Learning](https://arxiv.org/abs/2512.21085)** — *ICRA, 2026; preprint 2025* · `Core`  
-  Reinforcement learning for 6-DoF end-effector pose control with a lightweight 2-DoF aerial arm.
-- **[Impact-Robust Posture Optimization for Aerial Manipulation](https://arxiv.org/abs/2602.13762)** — *ICRA, 2026* · `Core`  
-  Optimizes robot posture to mitigate disturbances from impact and physical contact.
-- **[Whole-body motion planning and safety-critical control for aerial manipulation](https://arxiv.org/abs/2511.02342)** — *arXiv, 2025* · `Core`  
-  Employs superquadric geometry, clearance-aware planning, and barrier-function safety constraints.
-- **[Prespecified-Performance Kinematic Tracking Control for Aerial Manipulation](https://arxiv.org/abs/2509.10065)** — *arXiv, 2025* · `Core`  
-  Designs aerial end-effector tracking control with prescribed error-performance bounds.
-- **[Autonomous Aerial Manipulation at Arbitrary Pose in SE(3) with Robust Control and Whole-body Planning](https://arxiv.org/abs/2508.19608)** — *arXiv, 2025* · `Core`  
-  Couples robust geometric control and whole-body planning for omnidirectional aerial manipulation.
-- **[Flying Hand: End-Effector-Centric Framework for Versatile Aerial Manipulation Teleoperation and Policy Learning](https://roboticsproceedings.org/rss21/p130.html)** — *RSS, 2025* · `Core`  
-  Establishes a unified end-effector interface for aerial teleoperation, whole-body control, and policy learning.
-- **[NDOB-Based Control of a UAV with Delta-Arm Considering Manipulator Dynamics](https://arxiv.org/abs/2501.06122)** — *arXiv, 2025* · `Core`  
-  Uses a nonlinear disturbance observer to compensate for coupled vehicle–arm dynamics.
-- **[Whole-Body Integrated Motion Planning for Aerial Manipulators](https://arxiv.org/abs/2501.06493)** — *IEEE T-RO, 2025* · `Core`  
-  Jointly optimizes vehicle and arm trajectories with configuration-dependent collision constraints and imitation guidance.
-- **[Safety-Critical Control for Aerial Physical Interaction in Uncertain Environment](https://arxiv.org/abs/2501.16719)** — *ICRA, 2025* · `Core`  
-  Disturbance-observer-based safety-critical control for contact with uncertain static and dynamic structures.
-- **[Design of a Flexible Robot Arm for Safe Aerial Physical Interaction](https://arxiv.org/abs/2410.15797)** — *arXiv, 2024* · `Core`  
-  Studies lightweight compliant actuation and impact energy dissipation in aerial physical interaction.
-- **[A Compact Aerial Manipulator: Design and Control for Dexterous Operations](https://link.springer.com/article/10.1007/s10846-024-02090-7)** — *Journal of Intelligent & Robotic Systems, 2024* · `Core`  
-  Presents compact aerial manipulator hardware and control for dexterous operations.
-- **[Observer-Based Nonlinear Control for Dual-Arm Aerial Manipulator Systems Suffering From Uncertain Center of Mass](https://ieeexplore.ieee.org/document/10466505/)** — *IEEE journal, 2024* · `Core`  
-  Addresses uncertain center-of-mass dynamics in nonlinear control of a dual-arm aerial robot.
-- **[Servo Integrated Nonlinear Model Predictive Control for Overactuated Tiltable-Quadrotors](https://ieeexplore.ieee.org/document/10659124/)** — *IEEE RA-L, 2024* · `Related`  
-  Integrates servo dynamics into predictive control of a tiltable, overactuated aerial platform.
-- **[Finite-Time Fast Adaptive Backstepping Attitude Control for Aerial Manipulators Based on Variable Coupling Disturbance Compensation](https://ieeexplore.ieee.org/abstract/document/10505853)** — *IEEE TIE, 2024* · `Core`  
-  Adaptive finite-time attitude control with compensation for changing vehicle–manipulator coupling.
-
-### Robot Design, Morphology & Soft Manipulation
-
-- **[Self-assembling Modular Aerial Robot for Versatile Aerial Tasks](https://arxiv.org/abs/2605.19431)** — *arXiv, 2026* · `Core`  
-  Reconfigures multiple independently flying units into a modular flying manipulator.
-- **[An Open MuJoCo Simulation Framework for a Quadrotor Carrying a Tendon-Driven Soft Continuum Arm](https://arxiv.org/abs/2610.15308)** — *arXiv, 2026* · `Core`  
-  An open simulation framework for a quadrotor carrying a tendon-actuated continuum arm.
-- **[QuadHand: A Compact Quadrotor Aerial Manipulator with MRC-SDF-Based Whole-Body Motion Planning](https://arxiv.org/abs/2609.35094)** — *IROS, 2026* · `Core`  
-  Combines a compact 3-DoF manipulator, center-of-gravity compensation, and collision-aware planning.
-- **[AeRSoM: An Aerial Rigid-Soft Integrated Manipulator for Contact-Rich Manipulation](https://arxiv.org/abs/2609.28044)** — *arXiv, 2026* · `Core`  
-  Uses rigid–soft integration and variable stiffness for compliant, precise contact manipulation.
-- **[A Morphing Aerial Robot With Thruster-Integrated Flexible Continuum Links for Shape Adaptive Aerial Manipulation](https://arxiv.org/abs/2609.19328)** — *arXiv, 2026* · `Core`  
-  Distributes thrusters along flexible continuum links to combine shape adaptation and interaction forces.
-- **[U-Joint CAAMS: Experimental Evaluation of a Universal-Joint Continuum Manipulator for Aerial Manipulation](https://arxiv.org/abs/2607.03321)** — *arXiv, 2026* · `Core`  
-  Investigates a universal-joint continuum manipulator designed to resist out-of-plane deformation.
-- **[Tilt-X: Enabling Compliant Aerial Manipulation through a Tiltable-Extensible Continuum Manipulator](https://arxiv.org/abs/2602.23576)** — *ICRA, 2026* · `Core`  
-  Adds tilting and telescopic mechanisms to expand the usable workspace of a continuum aerial arm.
-- **[Hand-like autonomous flying robot for airborne grasping and interaction](https://www.nature.com/articles/s41467-026-68967-3)** — *Nature Communications, 2026* · `Core`  
-  A hand-inspired flying robot for grasping, perching, opening doors, and continuous interactions.
-- **[Integration of a Variable Stiffness Link for Long-Reach Aerial Manipulation](https://arxiv.org/abs/2510.15639)** — *arXiv, 2025* · `Core`  
-  A variable-stiffness link that trades precision for compliance in long-reach dual-arm manipulation.
-- **[Avian-Inspired High-Precision Tracking Control for Aerial Manipulators](https://arxiv.org/abs/2411.10966)** — *arXiv, 2024* · `Core`  
-  An avian-inspired aerial arm design with coordinated high-precision tracking control.
-- **[Aerial Manipulator With a Laterally Extendable Scissor Mechanism for Both Extension and Automatic Moment Compensation Using a Single Actuator](https://doi.org/10.1007/s12555-024-0483-2)** — *International Journal of Control, Automation, and Systems, 2025* · `Core`  
-  Combines lateral extension with automatic moment compensation using a single actuator.
-
-### Cooperative Manipulation & Related Benchmarks
-
-- **[Benchmarking Interaction-Oriented Aerial Mobility across Heterogeneous Environments (CrossFly)](https://arxiv.org/abs/2610.18381)** — *arXiv, 2026* · `Related`  
-  A long-horizon benchmark connecting aerial mobility and eventual interaction across heterogeneous environments.
-- **[Aerial Manipulation: Contact, Medium Coupling, and the Geometry of Readiness](https://arxiv.org/abs/2607.04719)** — *arXiv perspective, 2026* · `Related`  
-  A conceptual treatment of aerial manipulation through contact mechanics and surrounding-medium coupling.
-- **[Decentralized Aerial Manipulation of a Cable-Suspended Load Using Multi-Agent Reinforcement Learning](https://proceedings.mlr.press/v305/zeng25a.html)** — *CoRL, 2025* · `Related`  
-  Learns decentralized cooperative control for 6-DoF manipulation of a cable-suspended load.
-- **[Multi-robot Aerial Soft Manipulator For Floating Litter Collection](https://arxiv.org/abs/2507.03517)** — *arXiv, 2025* · `Related`  
-  Uses two aerial robots and a rope-based soft manipulation mechanism for floating-litter collection.
-- **[Agile and Cooperative Aerial Manipulation of a Cable-Suspended Load](https://arxiv.org/abs/2501.18802)** — *arXiv, 2025* · `Related`  
-  Investigates agile cooperative motion and manipulation of a shared suspended payload.
-- **[Proximal cooperative aerial manipulation with vertically stacked drones](https://www.nature.com/articles/s41586-025-09575-x)** — *Nature, 2025* · `Core`  
-  FlyingToolbox enables close-proximity cooperation and midair tool exchange between drones.
-
-## Surveys & Roadmaps
-
-Useful entry points for understanding the evolution, modeling assumptions, and open challenges of the field.
-
-- **[From aerial transportation to aerial interaction: A review](https://www.sciencedirect.com/science/article/pii/S1000936126003808)** — *2026*. Reviews the transition from load transport to physical interaction.
-- **[A Review of Real-Time Implementable Cooperative Aerial Manipulation Systems](https://www.mdpi.com/2504-446X/8/5/196)** — *Drones, 2024*. Surveys cooperative platforms, modeling, and real-time control.
-- **[Past, Present, and Future of Aerial Robotic Manipulators](https://doi.org/10.1109/TRO.2021.3084395)** — *IEEE T-RO, 2022*. A foundational roadmap on aerial robot embodiments and physical interaction.
-- **[Survey on Aerial Manipulator: System, Modeling, and Control](https://www.cambridge.org/core/journals/robotica/article/survey-on-aerial-manipulator-system-modeling-and-control/5FDD2404D65EF73477CF10CA62B69720)** — *Robotica, 2020*. Reviews aerial manipulator systems, dynamic models, and control schemes.
-
-## Projects & Code
-
-| Project | Paper | Resources |
+| Paper Title | Publication Venue / Status | Three Core Contributions |
 |---|---|---|
-| **Flying Hand** | RSS 2025 | [Paper](https://roboticsproceedings.org/rss21/p130.html) · [Project page](https://lecar-lab.github.io/flying_hand/) |
-| **AM-Planner** | IEEE T-RO 2025 | [Paper](https://arxiv.org/abs/2501.06493) · [GitHub](https://github.com/SYSU-HILAB/am-planner) |
-| **AirVLA** | arXiv 2026 | [Paper](https://arxiv.org/abs/2603.25038) · [Project page](https://airvla.github.io/) |
-| **AIR-VLA** | ICML 2026 | [Proceedings](https://proceedings.mlr.press/v306/sun26an.html) |
-| **Open-Source Soft Aerial Manipulation** | CoRL 2024 | [Proceedings](https://proceedings.mlr.press/v270/bauer25a.html) |
-| **Decentralized Cable-Suspended Manipulation** | CoRL 2025 | [Proceedings](https://proceedings.mlr.press/v305/zeng25a.html) |
-| **FlyingToolbox** | Nature 2025 | [Publisher page](https://www.nature.com/articles/s41586-025-09575-x) |
+| [Learning High-Speed Aerial Grasping With a Simple Gripper](https://arxiv.org/abs/2603.05935) | arXiv preprint, 2026-03 | 1. Targets reliable object grasping at higher flight speeds<br>2. Uses a lightweight commercial gripper with a learned control policy<br>3. Investigates deployment without real-world fine-tuning and speed–success trade-offs |
+| [An Aerial Manipulator for Perception-Driven Flower Targeting Toward Contactless Pollination in Vertical Farming](https://arxiv.org/abs/2605.06759) | arXiv preprint, 2026-05 | 1. Targets accurate flower localization and end-effector alignment in vertical farms<br>2. Integrates onboard RGB-D perception, MPPI, and a lightweight 2-DoF arm<br>3. Validates positioning in simulation and flight; targeting is not itself completed pollination |
+| [Aerial Manipulation with Contact-Aware Onboard Perception and Hybrid Control](https://arxiv.org/abs/2602.08251) | ICRA 2026 | 1. Targets contact-rich operation without external motion capture<br>2. Incorporates contact consistency into visual–inertial estimation and visual servoing<br>3. Closes the perception-to-contact loop using hybrid force/motion control |
+| [Aerial Grasping via Maximizing Delta-Arm Workspace Utilization](https://arxiv.org/abs/2506.15539) | arXiv preprint, 2025-06 | 1. Exploits the nonconvex reachable workspace of Delta-arm aerial graspers<br>2. Learns efficient gradients for reachable-set approximations and forward kinematics<br>3. Integrates arm feasibility with task constraints in trajectory optimization |
+| [Reliable Aerial Manipulation: Combining Visual Tracking with Range Sensing for Robust Grasping](https://www.research-collection.ethz.ch/entities/publication/0f64ad6f-5ed2-4289-a365-6bb7c48ae182) | ICRA 2025 | 1. Handles target loss from the onboard camera field of view during close approach<br>2. Fuses visual target tracking with one-dimensional ToF range sensing<br>3. Improves localization robustness throughout the final grasp phase |
+| [An Open-Source Soft Robotic Platform for Autonomous Aerial Manipulation in the Wild](https://proceedings.mlr.press/v270/bauer25a.html) | CoRL 2024 / PMLR 2025 | 1. Builds an autonomous grasping platform without external motion capture<br>2. Integrates onboard perception, a soft gripper, and open ROS 2 software/hardware<br>3. Tests physical grasping in varied indoor and outdoor conditions |
+| [Development of an Aerial Manipulation System Using Onboard Cameras and a Multi-Fingered Robotic Hand with Proximity Sensors](https://www.mdpi.com/1424-8220/25/2/470) | Sensors 2025 | 1. Introduces more precise near-field sensing to autonomous aerial grasping<br>2. Combines dual onboard cameras with a multi-finger hand and proximity sensors<br>3. Uses close-range feedback to correct localization error and complete grasps |
+| [High-speed aerial grasping using a soft drone with onboard perception](https://www.nature.com/articles/s44182-024-00012-1) | npj Robotics 2024 | 1. Targets accurate approach and capture during faster flight<br>2. Uses passive deformation of a soft gripper to absorb alignment/contact errors<br>3. Combines onboard vision with high-speed aerial grasping experiments |
+| [Hook-Based Aerial Payload Grasping from a Moving Platform](https://arxiv.org/abs/2409.11788) | arXiv preprint, 2024-09 | 1. Studies dynamic hook capture of suspended loads from moving carriers<br>2. Optimizes hook trajectories and contact timing using complementarity constraints<br>3. Uses physical simulation to predict target motion |
+| [Aerial Interaction with Tactile Sensing](https://ieeexplore.ieee.org/document/10611282/) | ICRA 2024 | 1. Adds tactile feedback to flying robots engaged in physical contact<br>2. Integrates a vision-based tactile sensor on a fully actuated drone<br>3. Uses sensed contact feedback in dynamic interaction tasks |
+| [An Ultra-Light, Ultra-Fast, Passive Closing Aerial Gripping System Capable of Grasping, Perching, and Aerial Manipulation](https://ieeexplore.ieee.org/document/10770047/) | SSRR 2024 | 1. Reduces mass and closing latency in aerial grasping devices<br>2. Introduces an ultralight passive fast-closing gripper<br>3. Uses the same mechanism for grasping, perching, and aerial interaction |
+| [Design, Localization, Perception, and Control for GPS-Denied Autonomous Aerial Grasping and Harvesting](https://doi.org/10.1109/LRA.2024.3366015) | IEEE RA-L 2024 | 1. Targets autonomous fruit harvesting without GPS<br>2. Combines localization, visual detection, flight control, and grasping mechanism design<br>3. Validates integrated operation in indoor agricultural settings |
 
-> Links to papers or project pages do not guarantee that source code or datasets are publicly available. Check the linked pages for current release status.
+## Whole-Body Planning, Dynamics & Contact Control (19 papers)
 
-## Open Research Directions
+| Paper Title | Publication Venue / Status | Three Core Contributions |
+|---|---|---|
+| [Physics-infused Learning for Aerial Manipulator in Winds and Near-Wall Environments](https://arxiv.org/abs/2603.07826) | AIAA SciTech 2026 | 1. Models wind and near-wall aerodynamic effects on aerial manipulators<br>2. Combines analytical aerodynamic terms with a learned residual force estimator<br>3. Tests robustness in free flight and surface-contact tracking |
+| [Safety-Critical Bilateral Teleoperation for Omnidirectional Aerial Manipulation Using Force-Sensorless Haptic Feedback](https://arxiv.org/abs/2608.21735) | IROS 2026（arXiv 注明已录用） | 1. Addresses feedback quality and actuator saturation in omnidirectional teleoperation<br>2. Coordinates commands, thrust limits, and haptic feedback through a safety filter<br>3. Renders interaction cues without dedicated force sensing across varied tasks |
+| [Effector-Centric NMPC of Tiltable-Multirotors for Offset-Free Omnidirectional Aerial Manipulation](https://arxiv.org/abs/2608.17819) | arXiv preprint, 2026-08 | 1. Targets omnidirectional end-effector control with tiltable rotors<br>2. Builds end-effector-centered NMPC with singularity and disturbance handling<br>3. Demonstrates pushing and continuous valve turning on hardware |
+| [FAM-DQ: A Dual-Quadrotor-Based Fully Actuated Aerial Manipulator for High-Torque Interaction](https://arxiv.org/abs/2608.13220) | arXiv preprint, 2026-08 | 1. Targets aerial tasks requiring contact torques beyond typical platform capabilities<br>2. Coordinates two quadrotor propulsion modules using a geared servo mechanism<br>3. Demonstrates six-axis manipulation and high-torque screw-driving operations |
+| [Hybrid Impedance-Admittance Control with Multi-Link Aerial Robot for Contact-Rich Surface Sliding Task](https://arxiv.org/abs/2608.01800) | arXiv preprint, 2026-08 | 1. Balances compliance and disturbance rejection during sliding over unknown surfaces<br>2. Uses joint motion for admittance behavior and rotor thrust for impedance behavior<br>3. Maintains compliant and stable contact in a multi-link aerial robot |
+| [Global End-Effector Pose Control of an Underactuated Aerial Manipulator via Reinforcement Learning](https://arxiv.org/abs/2512.21085) | ICRA 2026（2025-12 预印本） | 1. Controls a six-DoF end-effector using a quadrotor and lightweight 2-DoF arm<br>2. Trains RL to command vehicle accelerations/angular rates and joint targets<br>3. Combines low-level attitude control with physical tests involving pushing and load changes |
+| [Impact-Robust Posture Optimization for Aerial Manipulation](https://arxiv.org/abs/2602.13762) | ICRA 2026 | 1. Addresses instability caused by sudden impact during aerial manipulation<br>2. Optimizes robot attitude and configuration for greater impact-time controllability<br>3. Introduces a planning perspective for pre-contact robot preparation |
+| [Whole-body motion planning and safety-critical control for aerial manipulation](https://arxiv.org/abs/2511.02342) | arXiv preprint, 2025-11 | 1. Addresses coarse collision geometry and overly conservative safety constraints<br>2. Constructs differentiable collision constraints from superquadrics and proxy shapes<br>3. Combines maximum-clearance planning with high-order control barrier functions |
+| [Prespecified-Performance Kinematic Tracking Control for Aerial Manipulation](https://arxiv.org/abs/2509.10065) | arXiv preprint, 2025-09 | 1. Introduces prescribed convergence and tracking-error bounds to aerial manipulation<br>2. Designs performance-constrained control around end-effector kinematics<br>3. Studies how errors evolve inside predefined envelopes |
+| [Autonomous Aerial Manipulation at Arbitrary Pose in SE(3) with Robust Control and Whole-body Planning](https://arxiv.org/abs/2508.19608) | arXiv preprint, 2025-08 | 1. Enables arm operation at arbitrary vehicle orientations<br>2. Uses robust SE(3) geometric control to reject arm-motion and contact disturbances<br>3. Combines whole-body planning with non-level aerial manipulation |
+| [Flying Hand: End-Effector-Centric Framework for Versatile Aerial Manipulation Teleoperation and Policy Learning](https://roboticsproceedings.org/rss21/p130.html) | RSS 2025 | 1. Seeks a unified end-effector interface for diverse aerial manipulation tasks<br>2. Combines a fully actuated hexarotor, 4-DoF arm, and whole-body MPC<br>3. Supports teleoperation/imitation learning and demonstrates insertion, writing, and rotation |
+| [NDOB-Based Control of a UAV with Delta-Arm Considering Manipulator Dynamics](https://arxiv.org/abs/2501.06122) | arXiv preprint, 2025-01 | 1. Addresses vehicle disturbances induced by fast Delta-arm movement<br>2. Estimates and compensates internal/external forces with a nonlinear disturbance observer<br>3. Combines arm dynamics and compensation for fast motion with end-effector accuracy |
+| [Whole-Body Integrated Motion Planning for Aerial Manipulators](https://arxiv.org/abs/2501.06493) | IEEE Transactions on Robotics 2025 | 1. Optimizes vehicle and manipulator trajectories as one coupled system<br>2. Accounts for changing collision geometry and dynamic/kinematic limits<br>3. Uses imitation-learning assistance and demonstrates multiple manipulation primitives |
+| [Safety-Critical Control for Aerial Physical Interaction in Uncertain Environment](https://arxiv.org/abs/2501.16719) | ICRA 2025 | 1. Addresses safe physical contact in uncertain environments<br>2. Uses disturbance observation and safety-critical constraints to regulate interaction<br>3. Targets robust contact with static and moving structures |
+| [Design of a Flexible Robot Arm for Safe Aerial Physical Interaction](https://arxiv.org/abs/2410.15797) | arXiv preprint, 2024-10 | 1. Builds a lightweight arm tolerant to incidental contact and impact<br>2. Combines compliant closed-loop links, tendons, and elastic energy absorption<br>3. Studies mechanism behavior in free flight and physical contact |
+| [A Compact Aerial Manipulator: Design and Control for Dexterous Operations](https://link.springer.com/article/10.1007/s10846-024-02090-7) | Journal of Intelligent & Robotic Systems 2024 | 1. Targets dexterous aerial operation using a compact robotic platform<br>2. Co-designs arm configuration and flight/manipulation control<br>3. Demonstrates feasibility of dexterous interaction with compact hardware |
+| [Observer-Based Nonlinear Control for Dual-Arm Aerial Manipulator Systems Suffering From Uncertain Center of Mass](https://ieeexplore.ieee.org/document/10466505/) | IEEE 期刊 2024 | 1. Addresses shifting center of mass and model uncertainty in dual-arm aerial robots<br>2. Uses an observer for uncertain dynamics together with nonlinear control<br>3. Develops a stability analysis for dual-arm aerial manipulation |
+| [Servo Integrated Nonlinear Model Predictive Control for Overactuated Tiltable-Quadrotors](https://ieeexplore.ieee.org/document/10659124/) | IEEE RA-L 2024 | 1. Models tilting-rotor overactuated quadrotors for precise control<br>2. Includes rotor tilt-servo dynamics explicitly in nonlinear MPC<br>3. Supports approximately independent six-axis position/orientation maneuvers |
+| [Finite-Time Fast Adaptive Backstepping Attitude Control for Aerial Manipulators Based on Variable Coupling Disturbance Compensation](https://ieeexplore.ieee.org/abstract/document/10505853) | IEEE TIE 2024 | 1. Addresses time-varying attitude disturbances caused by manipulator joint motion<br>2. Uses fast adaptive backstepping with disturbance compensation<br>3. Targets finite-time attitude stability and tracking precision |
 
-1. **From perception to physical interaction.** How can an aerial robot jointly perform target discovery, approach, grasping, transport, and placement over long horizons? Evaluate each stage separately, including safety and recovery.
-2. **Transferable aerial VLA policies.** How should foundation models account for floating-base dynamics, payloads, underactuation, and the interface between high-level actions and low-level control?
-3. **Manipulation without external infrastructure.** Combine onboard visual localization, range sensing, contact-aware estimation, and force regulation in cluttered outdoor environments.
-4. **Omnidirectional perception for manipulation.** Study whether panoramic observations improve non-frontal target acquisition and continuous tracking, while accounting for distortion during precise end-effector alignment.
-5. **Benchmarking embodiment and control together.** Compare different arm morphologies, grippers, actuation strategies, sensing configurations, and policy classes under matched disturbances and task definitions.
+## Robot Embodiment, Soft Mechanisms & Platform Design (11 papers)
 
-## Scope & Maintenance
+| Paper Title | Publication Venue / Status | Three Core Contributions |
+|---|---|---|
+| [Self-assembling Modular Aerial Robot for Versatile Aerial Tasks](https://arxiv.org/abs/2605.19431) | arXiv preprint, 2026-05 | 1. Balances independent-drone agility with manipulation capabilities after assembly<br>2. Designs flying modules with articulated self-docking connections<br>3. Explores different assembled shapes and their resulting aerial task capabilities |
+| [An Open MuJoCo Simulation Framework for a Quadrotor Carrying a Tendon-Driven Soft Continuum Arm](https://arxiv.org/abs/2610.15308) | arXiv preprint, 2026-10 | 1. Provides coupled simulation for a quadrotor with a tendon-driven soft continuum arm<br>2. Models the flying base, deformable arm, and actuation together in MuJoCo<br>3. Enables reproducible control and algorithm testing for soft aerial manipulation |
+| [QuadHand: A Compact Quadrotor Aerial Manipulator with MRC-SDF-Based Whole-Body Motion Planning](https://arxiv.org/abs/2609.35094) | IROS 2026（作者主页列出） | 1. Targets compact aerial manipulators operating in cluttered spaces<br>2. Builds a 3-DoF arm with passive center-of-mass compensation<br>3. Uses robot-centric distance fields for collision-aware whole-body trajectory optimization |
+| [AeRSoM: An Aerial Rigid-Soft Integrated Manipulator for Contact-Rich Manipulation](https://arxiv.org/abs/2609.28044) | arXiv preprint, 2026-09 | 1. Addresses the tension between precision and compliance during aerial contact<br>2. Combines rigid–soft mechanisms, variable stiffness, and coordinated control<br>3. Demonstrates tasks including wire grasping, leaf contact, insertion, and twisting |
+| [A Morphing Aerial Robot With Thruster-Integrated Flexible Continuum Links for Shape Adaptive Aerial Manipulation](https://arxiv.org/abs/2609.19328) | arXiv preprint, 2026-09 | 1. Targets the limited contact-force authority of conventional soft aerial arms<br>2. Distributes propulsion elements along deformable continuum links<br>3. Expands both shape adaptability and achievable end-effector wrench space |
+| [U-Joint CAAMS: Experimental Evaluation of a Universal-Joint Continuum Manipulator for Aerial Manipulation](https://arxiv.org/abs/2607.03321) | arXiv preprint, 2026-07 | 1. Addresses lateral deformation and tip-position errors in continuum aerial arms<br>2. Introduces a universal-joint continuum architecture with improved lateral stiffness<br>3. Experiments assess structural effects on aerial manipulation accuracy |
+| [Tilt-X: Enabling Compliant Aerial Manipulation through a Tiltable-Extensible Continuum Manipulator](https://arxiv.org/abs/2602.23576) | ICRA 2026 | 1. Addresses directional workspace limits of downward-hanging continuum arms<br>2. Combines tilting, telescoping, and tendon-driven continuum elements<br>3. Measures how rotor downwash influences end-effector positioning |
+| [Hand-like autonomous flying robot for airborne grasping and interaction](https://www.nature.com/articles/s41467-026-68967-3) | Nature Communications 2026 | 1. Draws on human-hand morphology for a compact flying manipulation robot<br>2. Integrates flight and grasping hardware within one coordinated embodiment<br>3. Demonstrates object pickup, door opening, perching, and human interaction |
+| [Integration of a Variable Stiffness Link for Long-Reach Aerial Manipulation](https://arxiv.org/abs/2510.15639) | arXiv preprint, 2025-10 | 1. Balances precision and compliance for long-reach aerial interaction<br>2. Uses a stiffness-tunable connection switching between cable-like and rigid-link behavior<br>3. Evaluates disturbance isolation and pose accuracy in a dual-arm configuration |
+| [Avian-Inspired High-Precision Tracking Control for Aerial Manipulators](https://arxiv.org/abs/2411.10966) | arXiv preprint, 2024-11 | 1. Draws structural and dimensional cues from avian morphology<br>2. Combines recursive Newton–Euler dynamics with coordinated tracking control<br>3. Aims to improve stability and positioning precision of aerial manipulators |
+| [Aerial Manipulator With a Laterally Extendable Scissor Mechanism for Both Extension and Automatic Moment Compensation Using a Single Actuator](https://doi.org/10.1007/s12555-024-0483-2) | International Journal of Control, Automation, and Systems 2025 | 1. Compensates overturning moments caused by lateral arm extension<br>2. Links a scissor extension mechanism to a moving counterweight<br>3. Achieves both reach adjustment and moment compensation with one actuator |
 
-- **Time span:** Primarily 2024–2026, as of October 19, 2026.
-- **Inclusion:** Aerial manipulators, flying grippers, aerial physical interaction, cooperative manipulation, task-relevant perception/control, and aerial manipulation learning benchmarks.
-- **Exclusion:** Ordinary aerial navigation or tracking studies without a clear physical-interaction connection.
-- **Bibliographic accuracy:** Use the publisher's version of record when citing a formally published paper. arXiv submission year and conference publication year may differ.
-- **Completeness:** This is a curated, non-exhaustive research list. Titles, venues, and release status should be rechecked before use in a manuscript.
-- **Search terms:** `aerial manipulation`, `aerial manipulator`, `aerial grasping`, `aerial physical interaction`, `whole-body aerial control`, `aerial VLA`, `cooperative aerial manipulation`.
+## Cooperative Manipulation & Related Benchmarks (6 papers)
 
-**Discover more:** [arXiv Robotics](https://arxiv.org/list/cs.RO/recent) · [Robotics: Science and Systems](https://roboticsproceedings.org/) · [Proceedings of Machine Learning Research](https://proceedings.mlr.press/) · [IEEE Xplore](https://ieeexplore.ieee.org/)
+| Paper Title | Publication Venue / Status | Three Core Contributions |
+|---|---|---|
+| [Benchmarking Interaction-Oriented Aerial Mobility across Heterogeneous Environments (CrossFly)](https://arxiv.org/abs/2610.18381) | arXiv preprint, 2026-10 | 1. Studies long-horizon navigation-to-interaction across indoor, outdoor, and mixed settings<br>2. Introduces CrossFly trajectories and evaluation across multiple environments and robot types<br>3. Tests transitions from aerial mobility to object interaction rather than isolated grasp accuracy |
+| [Aerial Manipulation: Contact, Medium Coupling, and the Geometry of Readiness](https://arxiv.org/abs/2607.04719) | arXiv preprint, 2026-07；观点/理论文章 | 1. Reframes aerial manipulation as sustained coupling between flight and surrounding media<br>2. Discusses contact reactions, medium interaction, and geometric manipulability<br>3. Offers a conceptual perspective rather than a new dataset or hardware benchmark |
+| [Decentralized Aerial Manipulation of a Cable-Suspended Load Using Multi-Agent Reinforcement Learning](https://proceedings.mlr.press/v305/zeng25a.html) | CoRL 2025 | 1. Studies six-DoF manipulation of a common suspended load using multiple aircraft<br>2. Trains decentralized policies with multi-agent reinforcement learning<br>3. Reduces dependence on global state, inter-robot communication, and centralized commands |
+| [Multi-robot Aerial Soft Manipulator For Floating Litter Collection](https://arxiv.org/abs/2507.03517) | arXiv preprint, 2025-07 | 1. Uses multiple drones and cables as a flexible aerial manipulation mechanism<br>2. Plans cable geometry to balance grasping capacity and tension<br>3. Targets floating-waste collection while considering load and downwash effects |
+| [Agile and Cooperative Aerial Manipulation of a Cable-Suspended Load](https://arxiv.org/abs/2501.18802) | arXiv preprint, 2025-01 | 1. Studies agile flight and pose control with cooperative suspended payloads<br>2. Explicitly models coupling among aircraft, tethers, and payload<br>3. Provides planning/control tools for dynamic transport and multi-robot manipulation |
+| [Proximal cooperative aerial manipulation with vertically stacked drones](https://www.nature.com/articles/s41586-025-09575-x) | Nature 2025 | 1. Addresses aerodynamic interference and precision during close-proximity cooperation<br>2. Pairs vertically arranged manipulator and toolbox drones<br>3. Enables aerial tool exchange and heterogeneous cooperative tasks |
+
+## Suggested Starting Points for Embodied UAV Research
+
+1. [Flying Hand](https://roboticsproceedings.org/rss21/p130.html) (RSS 2025): A common end-effector interface for teleoperation and imitation learning.
+2. [AIR-VLA](https://proceedings.mlr.press/v306/sun26an.html) (ICML 2026): Aerial VLA tasks, demonstrations, and evaluation.
+3. [AM-Bench](https://arxiv.org/abs/2609.00641) (2026): Embodiment-, controller-, and policy-aware benchmarking.
+4. [π, But Make It Fly](https://arxiv.org/abs/2603.25038) (2026): Physics-aware transfer of manipulation VLA policies.
+5. [AeroManip-VLA](https://arxiv.org/abs/2609.36915) (2026): Scalable RL-generated demonstrations for aerial manipulation.
+6. [Aerial Manipulation in the Wild](https://arxiv.org/abs/2609.30521) (2026): Outdoor onboard perception and whole-body execution.
 
 ---
 
-*From flying cameras to flying hands — toward embodied aerial intelligence.*
+**Scope:** This table organizes abstracts and existing notes for 58 collected works. It is not a full-text systematic review and does not assert exhaustive coverage of the research area. See the [main Awesome Aerial Manipulation repository document](awesome-aerial-manipulation.md) for additional surveys, projects, and open problems.
